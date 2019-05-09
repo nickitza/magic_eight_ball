@@ -3,51 +3,61 @@ require 'pry'
 
 class Magic_Ball_App
   attr_accessor
-
   def initialize
+
     magic_app
   end
 
   def get_menu_choice
-    stars
-    puts "Welcome to the Magic Eight Ball"
-    stars
     puts "1) Ask a question."
     puts "2) Exit"
-    gets.strip.to_i
+    gets.strip
   end
 
   def ask_question
     puts "Ask the spirits within the ball a yes or no question: "
     gets.strip()
     stars
+    puts `clear`
     puts "The spirits are being conjured..."
     sleep(1)
     puts "..."
     sleep(2)
-    puts `clear`
     give_response
   end
 
   def stars
-    puts "********" * 4
+    puts "********".colorize(:yellow) * 4
   end
+
+  def add_answers
+    puts "What answer would you like to add?"
+    user_add = gets.strip
+    @responses << user_add
+    binding.pry
+  end
+
 
   def magic_app  
     still_running = true
-    while still_running 
+    while still_running
+      stars
+      puts "Welcome to the Magic Eight Ball".colorize(:color => :black, :background => :white)
+      stars 
       user_choice = get_menu_choice 
       case user_choice
-      when 1
+      when "1"
         ask_question
-      when 2
+      when "2"
         puts "The spirits say you'll return soon."
         puts "Goodbye for now."
-        puts "Bwah ha ha ha haaa!"
-        stars
+        puts "bWaH hA Ha hA hAhA!"
         still_running = false
+        exit
+      when "add_answers"
+        add_answers
       else
-        puts "That is not a valid selection."
+        puts "That is not a valid selection.".colorize(:red)
         puts "Please choose either 1 or 2."
       end
     end
