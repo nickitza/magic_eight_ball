@@ -9,21 +9,29 @@ class Magic_Ball_App
   end
 
   def get_menu_choice
-    puts
-    puts "***Welcome to the Magic Eight Ball***"
+    stars
+    puts "Welcome to the Magic Eight Ball"
+    stars
     puts "1) Ask a question."
     puts "2) Exit"
-    gets.to_i
+    gets.strip.to_i
   end
 
   def ask_question
     puts "Ask the spirits within the ball a yes or no question: "
     gets.strip()
+    stars
     puts "The spirits are being conjured..."
-    sleep(2)
+    sleep(1)
     puts "..."
     sleep(2)
+    puts `clear`
     give_response
+  end
+
+  def stars
+    puts "********" * 4
+  end
 
   def magic_app  
     still_running = true
@@ -36,7 +44,8 @@ class Magic_Ball_App
         puts "The spirits say you'll return soon."
         puts "Goodbye for now."
         puts "Bwah ha ha ha haaa!"
-        exit
+        stars
+        still_running = false
       else
         puts "That is not a valid selection."
         puts "Please choose either 1 or 2."
@@ -70,10 +79,8 @@ class Magic_Ball_App
       "The demon next to you is nodding.",
       "The spirits are silent on the matter."
     ]
-    puts responses.sample
+    puts @responses.sample
     magic_app
   end
 end
-
-
 Magic_Ball_App.new
