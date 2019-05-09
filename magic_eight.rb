@@ -40,7 +40,10 @@ class Magic_Ball_App
 
   def ask_question
     puts "Ask the spirits within the ball a yes or no question: "
-    gets.strip()
+    question = gets.strip()
+    if question.length == 0
+      ask_question
+    else
     stars
     puts `clear`
     puts "The spirits are being conjured..."
@@ -48,6 +51,7 @@ class Magic_Ball_App
     puts "..."
     sleep(2)
     give_response
+    end
   end
 
   def stars
