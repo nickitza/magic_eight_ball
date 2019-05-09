@@ -51,7 +51,7 @@ class Magic_Ball_App
   end
 
   def stars
-    puts "********".colorize(:yellow) * 4
+    puts "*********".colorize(:yellow) * 4
   end
 
   def add_answers
@@ -79,16 +79,16 @@ class Magic_Ball_App
     still_running = true
     while still_running
       stars
-      puts "Welcome to the Magic Eight Ball".colorize(:color => :black, :background => :white)
+      puts "  Welcome to the Magic Eight Ball  ".colorize(:color => :black, :background => :white)
       stars 
       user_choice = get_menu_choice 
       case user_choice
         when "1"
           ask_question
         when "2"
-          puts "The spirits say you'll return soon."
-          puts "Goodbye for now."
-          puts "bWaH hA Ha hA hAhA!"
+          puts "The spirits say you'll return soon.".colorize(:magenta)
+          puts "Goodbye for now.".colorize(:magenta)
+          puts ".o*bWaH hA Ha hA hAhA!*o.".colorize(:light_black)
           still_running = false
           exit
         when "add_answers"
@@ -99,7 +99,7 @@ class Magic_Ball_App
           reset_answers
         else
           puts "That is not a valid selection.".colorize(:red)
-          puts "Please choose either 1 or 2."
+          puts "Please choose either 1 or 2.".colorize(:red)
       end
     end
   end
