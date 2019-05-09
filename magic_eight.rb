@@ -57,7 +57,12 @@ class Magic_Ball_App
   def add_answers
     puts "What answer would you like to add?"
     user_add = gets.strip
-    @user_responses << user_add
+    if @user_responses.include? user_add
+      puts "This answer is already among the spirits."
+    else
+      @user_responses << user_add
+      puts "Your answer has been given to the spirits to use as they please."
+    end
   end
 
   def print_answers
