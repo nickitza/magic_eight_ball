@@ -2,8 +2,32 @@ require 'colorize'
 require 'pry'
 
 class Magic_Ball_App
-  attr_accessor
+  attr_accessor :responses
   def initialize
+    @responses = [
+      "The spirits say absolutely not.",
+      "The spirits say absolutely.",
+      "The path is hazy; try again later.",
+      "The path is shrouded in darkness; don't pursue.",
+      "The path is clear to travel; pursue freely.",
+      "Concentrate deeply and ask again.",
+      "The spirits are unsure.",
+      "Most definitely.",
+      "Outlook not so good.",
+      "The fae say it's tricky, but yes.",
+      "The fae say it's tricky, but no.",
+      "You really don't want to know.",
+      "It's everything you've dreamed of.",
+      "You should ask your cat.",
+      "You already know the answer.",
+      "The runes say it's possible.",
+      "The scrying ball says it's likely.",
+      "The Ouija board spells Not Really.",
+      "Ask the ghost sitting next to you. It knows.",
+      "You will dream the answer tonight.",
+      "The demon next to you is nodding.",
+      "The spirits are silent on the matter."
+    ]
 
     magic_app
   end
@@ -34,9 +58,16 @@ class Magic_Ball_App
     puts "What answer would you like to add?"
     user_add = gets.strip
     @responses << user_add
-    binding.pry
   end
 
+  def print_answers
+    @responses.each do |r|
+    puts r
+    end
+  end
+
+  def reset_answers
+  end
 
   def magic_app  
     still_running = true
@@ -56,6 +87,10 @@ class Magic_Ball_App
         exit
       when "add_answers"
         add_answers
+      when "print_answers"
+        print_answers
+      when "reset_answers"
+        reset_answers
       else
         puts "That is not a valid selection.".colorize(:red)
         puts "Please choose either 1 or 2."
@@ -65,30 +100,6 @@ class Magic_Ball_App
 
   
   def give_response
-    @responses = [
-      "The spirits say absolutely not.",
-      "The spirits say absolutely.",
-      "The path is hazy; try again later.",
-      "The path is shrouded in darkness; don't pursue.",
-      "The path is clear to travel; pursue freely.",
-      "Concentrate deeply and ask again.",
-      "The spirits are unsure.",
-      "Most definitely.",
-      "Outlook not so good.",
-      "The fae say it's tricky, but yes.",
-      "The fae say it's tricky, but no.",
-      "You really don't want to know.",
-      "It's everything you've dreamed of.",
-      "You should ask your cat.",
-      "You already know the answer.",
-      "The runes say it's possible.",
-      "The scrying ball says it's likely.",
-      "The Ouija board spells Not Really.",
-      "Ask the ghost sitting next to you. It knows.",
-      "You will dream the answer tonight.",
-      "The demon next to you is nodding.",
-      "The spirits are silent on the matter."
-    ]
     puts @responses.sample
     magic_app
   end
