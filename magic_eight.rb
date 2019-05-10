@@ -40,15 +40,20 @@ class Magic_Ball_App
 
   def ask_question
     puts "Ask the spirits within the ball a yes or no question: "
+    print "\n> "
     question = gets.strip()
     if question.length == 0
       ask_question
     else
     stars
-    puts `clear`
+    clear
+    stars
+    sleep(1)
     puts "The spirits are being conjured..."
     sleep(1)
     puts "..."
+    sleep(1)
+    puts "...."
     sleep(2)
     give_response
     end
@@ -57,6 +62,11 @@ class Magic_Ball_App
   def stars
     puts "*********".colorize(:yellow) * 4
   end
+
+  def clear
+    print `clear`
+  end
+
 
   def add_answers
     puts "What answer would you like to add?"
@@ -82,17 +92,22 @@ class Magic_Ball_App
   def magic_app  
     still_running = true
     while still_running
+      clear
       stars
       puts "  Welcome to the Magic Eight Ball  ".colorize(:color => :black, :background => :white)
       stars 
       user_choice = get_menu_choice 
       case user_choice
         when "1"
+          clear
           ask_question
         when "2"
+          clear
+          stars
           puts "The spirits say you'll return soon.".colorize(:magenta)
           puts "Goodbye for now.".colorize(:magenta)
           puts ".o*bWaH hA Ha hA hAhA!*o.".colorize(:light_black)
+          stars
           still_running = false
           exit
         when "add_answers"
@@ -102,14 +117,24 @@ class Magic_Ball_App
         when "reset_answers"
           reset_answers
         else
+          clear
+          stars
           puts "That is not a valid selection.".colorize(:red)
           puts "Please choose either 1 or 2.".colorize(:red)
+          stars
+          puts
+          puts "Press Enter to return to menu"
+          gets
       end
     end
   end
   
   def give_response
     puts @responses.sample
+    stars
+    puts
+    print "Press enter to continue"
+    gets
     magic_app
   end
 end
